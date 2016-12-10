@@ -27,7 +27,7 @@ public List<String> f;
 }
 ```
 
-**Note** : this tool behaviour as a pre-processor for code analysis, so that the produced result is a bit unfriendly to human-readability:
+**Note** : this tool behave as a pre-processor for code analysis, so that the produced result is a bit unfriendly to human-readability:
 
 1. it will remove all comments appeared inside a statement of multiple declarations
 
