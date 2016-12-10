@@ -1,0 +1,48 @@
+# multiDeclRefactor
+
+Simple and a bit ugly tool for refactoring multiple declarations in Java:
+
+e.g. Given a java file has multiple declarations:
+
+```java
+public class MultiDecl {
+    private int a, b, c;
+
+    public List<String> d = new ArrayList<>(),
+                        e,
+                        f;
+}
+```
+
+it will refactor all multiple declarations in one statements to each declaration per statement:
+```java
+public class MultiDecl {
+private int a;
+private int b;
+private int c;
+
+public List<String> d = new ArrayList<>();
+public List<String> e;
+public List<String> f;
+}
+```
+
+**Note** : this tool behaviour as a pre-processor for code analysis, so that the produced result is a bit unfriendly to human-readability:
+
+1. it will remove all comments appeared inside a statement of multiple declarations
+
+2. it will not keep the origin identation of a refactor statements
+
+## usage
+
+```bash
+./run-refactor.sh a.java b.java ...
+```
+
+## dependency
+
+This tool depends on a hacked version of [checkstyle](https://github.com/CharlesZ-Chen/checkstyle) in my git repo.
+
+The hacked version of `checkstyle` is the backend of this tool, i.e. it detects the multiple declarations in a source file and then propage the diagnostic result to this tool.
+
+I currently still not have time to write build system and test framework for this tool, but hopefully I will create one soon.
