@@ -31,7 +31,7 @@ public List<String> f;
 
 1. it will remove all comments appeared inside a statement of multiple declarations
 
-2. it will not keep the origin identation of a refactor statements
+2. it will not keep the origin indentation of a refactor statements
 
 ## usage
 
