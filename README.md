@@ -33,34 +33,6 @@ public List<String> f;
 
 2. it will not keep the origin indentation of a refactor statement
 
-3. Below is an extreme test case I used to ensure my refactor consider all situations:
-```java
-import java.util.*;
-public class Test {
-protected int f, g;
-
-public int[] a = {1,2,3}, // line comment with ;
- /* multi line comment
- * asd
- (*/
- b = new int[0],
- /*in line comment*/ c = Test.<Object, Object>m(a, b),
- d = new int [2], // comment
- /*in line comment*/
- e = {1,2,3};
-
-public int i, j;
-
-   static <T1, T2> int[] m(T1 t1, T2 t2) {
-      return new int[0];
-   }
-}
-
-class MyType {}
-```
-
-If you meet one situation that missing in above test case and cause a bug in this refactor, very wellcome to file an issue to let me know, and I'll try my best to fix it.
-
 ## usage
 
 ```bash
