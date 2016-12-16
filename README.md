@@ -32,7 +32,11 @@ public List<String> f;
 1. it will remove all comments appeared inside a statement of multiple declarations
 
 2. it will not keep the origin indentation of a refactor statement
-
+## building
+just run following script:
+```bash
+./fetch_dependency.sh
+```
 ## usage
 
 ```bash
@@ -45,4 +49,4 @@ This tool depends on a hacked version of [checkstyle](https://github.com/Charles
 
 The hacked version of `checkstyle` is the backend of this tool, i.e. it detects the multiple declarations in a source file and then propage the diagnostic result to this tool.
 
-I currently still not have time to write build system and test framework for this tool, but hopefully I will create one soon.
+I currently still not have time to write test framework for this tool, but hopefully I will create one soon.
