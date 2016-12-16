@@ -77,7 +77,7 @@ In above json format, "file" is the absolute java file path that contains one or
 
 I currently have a `controller_checkstyle.py` as the middleware between the `checkstyle` backend and `multiDeclRefactor` frontend.
 
-Current architecture would make below future changes easily:
+Current architecture would make below future changes easy:
 
 - provides a new frontend/backend: just make a frontend/backend that output follows the json protocal.
 
