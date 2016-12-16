@@ -56,7 +56,7 @@ I currently still not have time to write test framework for this tool, but hopef
 
 ### Architecture
 
-This tool is actually just a light-weight front-end that recieves diagnostic reports and then conduct refactors based on the reports, i.e. it doesn't has the ability of dectecting multi-declartions issues, instead, it needs a back-end reports issues and then it do refactors based on reports.
+This tool is actually just a light-weight front-end that recieves diagnostic reports and then do refactors based on the reports, i.e. it doesn't has the ability of dectecting multi-declartions issues, instead, it needs a back-end reports issues and then it do refactors based on reports.
 
 It uses `json` as the data format, and the diagnostic report format shown below:
 
