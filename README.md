@@ -32,6 +32,7 @@ public List<String> f;
 1. it will remove all comments appeared inside a statement of multiple declarations
 
 2. it will not keep the origin indentation of a refactor statement
+
 ## building
 just run following script:
 ```bash
