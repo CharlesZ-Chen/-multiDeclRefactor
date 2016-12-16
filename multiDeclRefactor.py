@@ -2,21 +2,21 @@ import sys, os
 import shutil, tempfile
 import json
 
-REFACTOR_ISSUE_NAME = "HackedMultipleVariableDeclarations"
-
 def main():
     try:
-        data = json.load(sys.stdin)
-        total_multi_decls = data[REFACTOR_ISSUE_NAME]
-        file_based_multi_decls = collect_by_file(total_multi_decls)
-        for refactor_file, multi_decls in file_based_multi_decls.iteritems():
-            refactor_decls(refactor_file, multi_decls)
+        total_multi_decls = json.load(sys.stdin)
+        refactor_decls(total_multi_decls)
     except ValueError:
         for line in sys.stdin:
             print line
         sys.exit(1)
 
-def refactor_decls(refactor_file, multi_decls):
+def refactor_decls(total_multi_decls):
+    file_based_multi_decls = collect_by_file(total_multi_decls)
+    for refactor_file, multi_decls in file_based_multi_decls.iteritems():
+        refactor_decls_in_single_file(refactor_file, multi_decls)
+
+def refactor_decls_in_single_file(refactor_file, multi_decls):
     # print multi_decls
     backup = refactor_file + ".origin"
     shutil.copyfile(refactor_file, backup)
