@@ -79,6 +79,6 @@ I currently have a `controller_checkstyle.py` as the middleware between the `che
 
 Current architecture would make below future changes easy:
 
-- provides a new frontend/backend: just make a frontend/backend that output follows the json protocal.
+- provides a new frontend/backend: just make a frontend/backend whose output follows the json protocal.
 
 - extend the refactor to process a new kind of issue: make hacks on `checkstyle`, provides a `**check.xml` to do the issue check, and then add a new python front-end to do the refactor.
