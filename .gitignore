@@ -1,2 +1,8 @@
 # test output
 test/*.origin
+
+# python output
+*.pyc
+
+# checkstyle backend
+checkstyle/
