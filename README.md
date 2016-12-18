@@ -2,7 +2,7 @@
 
 Simple and a bit ugly tool for refactoring multiple declarations in Java:
 
-e.g. Given a java file has multiple declarations:
+For example, given a Java file with multiple variables declared in a single statement::
 
 ```java
 public class MultiDecl {
@@ -14,7 +14,7 @@ public class MultiDecl {
 }
 ```
 
-it will refactor all multiple declarations in one statements to each declaration per statement:
+it will refactor the code so that each statement declares just one variable:
 ```java
 public class MultiDecl {
 private int a;
@@ -27,14 +27,15 @@ public List<String> f;
 }
 ```
 
-**Note** : this tool behave as a pre-processor for code analysis, so that the produced result is a bit unfriendly to human-readability:
+This tool is intended to be used as a pre-processor before running a code analysis tool.
+The refactored code is not very human-readable:
 
-1. it will remove all comments appeared inside a statement of multiple declarations
+1. It removes all comments on a multi-variable declaration statement.
 
-2. it will not keep the origin indentation of a refactor statement
+2. It does not retain the original indentation.
 
 ## building
-just run following script:
+To build the tool, run:
 ```bash
 ./fetch_dependency.sh
 ```
@@ -48,7 +49,7 @@ just run following script:
 
 This tool depends on a hacked version of [checkstyle](https://github.com/CharlesZ-Chen/checkstyle) in my git repo. (branch `multiDeclJson`)
 
-The hacked version of `checkstyle` is the backend of this tool, i.e. it detects the multiple declarations in a source file and then propage the diagnostic result to this tool.
+The hacked version of `checkstyle` is the backend of this tool, i.e. it detects the multiple declarations in a source file and then propagates the diagnostic result to this tool.
 
 I currently still not have time to write test framework for this tool, but hopefully I will create one soon.
 
@@ -56,7 +57,7 @@ I currently still not have time to write test framework for this tool, but hopef
 
 ### Architecture
 
-This tool is actually just a light-weight front-end that recieves diagnostic reports and then do refactors based on the reports, i.e. it doesn't has the ability of dectecting multi-declartions issues, instead, it needs a back-end reports issues and then it do refactors based on reports.
+This tool is actually just a light-weight front-end that receives diagnostic reports and then do refactors based on the reports, i.e. it doesn't has the ability of detecting multi-declaration issues, instead, it needs a back-end reports issues and then it do refactors based on reports.
 
 It uses `json` as the data format, and the diagnostic report format shown below:
 
@@ -79,6 +80,6 @@ I currently have a `controller_checkstyle.py` as the middleware between the `che
 
 Current architecture would make below future changes easy:
 
-- provides a new frontend/backend: just make a frontend/backend whose output follows the json protocal.
+- provides a new frontend/backend: just make a frontend/backend whose output follows the json protocol.
 
 - extend the refactor to process a new kind of issue: make hacks on `checkstyle`, provides a `**check.xml` to do the issue check, and then add a new python front-end to do the refactor.
