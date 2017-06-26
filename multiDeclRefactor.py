@@ -34,6 +34,7 @@ def refactor_decls_in_single_file(refactor_file, multi_decls):
                     origin_line_no += 1;
                 origin_line_no = end_line + 1
 
+                ## write refactored decls
                 decl_list = list()
                 for decl in decls:
                     decl_list.append(decl_type + ' ' + decl + ';')
@@ -62,10 +63,13 @@ def produce_refactor(multi_decl, ORIGIN_LINES):
     (end_line_no, multi_decl_str) = get_multi_decls_as_str(multi_decl, ORIGIN_LINES)
 
     decl_list = get_decl_list(multi_decl_str, declared_type)
+
     return (start_line_no, end_line_no, declared_type, decl_list)
 
 def get_multi_decls_as_str(multi_decl, ORIGIN_LINES):
-    """This function will remove comments in multiple declarations statement."""
+    """This function will remove comments in multiple declarations statement.
+       The statement semi-comma will also be removed.
+    """
     decl_str_list = list()
     cur_line_no = multi_decl['line']
     is_end_line = False
@@ -120,6 +124,8 @@ def process_line(line, has_unclosed_comment):
 def get_decl_list(decls_str, declared_type):
     """ public int[] a = {1,2,3}, b = new int[0], c = Test.<Object, Object>m(a, b), d = new int [2], e = {1,2,3}
     """
+    """ given a decls string, split it to a list that each item is a single declaration without type.
+    """
     #remove type first
     decls_str = decls_str.replace(declared_type, '').strip()
     decls_list = list()
@@ -160,3 +166,4 @@ def collect_by_file(multi_decls):
 
 if __name__ == '__main__':
     main()
+
