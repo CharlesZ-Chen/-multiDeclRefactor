@@ -1,0 +1,53 @@
+# The initial design idea for this light-weight front-end.
+# Updated in 2017 Jun. 26 by Charles Chen.
+
+multiDecl:
+
+    {
+        line: x,
+     [
+        { 
+            col: xxx,
+            type: xxx
+        },
+        ...
+     ]
+    }
+
+// assumption: decls in the same file sorted by lineNo, decls on same line sorted by col
+
+// overlap kinds:
+// 1. start on same line
+// 2. one end, one start on same line
+
+xxxxxx1; typeA decl1, decl2; xxxxx2; typeB decl3, decl4; xxxxx3;
+
+xxxxxx1; typeA decl1,
+    decl2,
+    decl3; xxx2; typeB decl4,
+    decl5; xxxx3; typeC decl6, decl7; xxx4; typeD decl8, decl9;
+
+//refactor
+{
+    start_line:
+    start_col:
+    end_line:
+    end_col:
+    decl_type: 
+}
+
+// change to iterate next_refactor seems nicer
+ori_line_no = 0
+last_refactor = {0, 0, 0, 0, "None"}
+for refactor in refactor_list:
+    while ori_line_no < refactor['start_line']:
+        write ori_line_no
+    # deal with overlap
+    if last_refactor['end_line'] == refactor['start_line']:
+        overlap_line = ORIGIN_LINES[refactor['start_line']]
+        write overlap_line[last_refactor['end_col'] : refactor['start_col']]
+
+    for decl in get_decl_list(refactor):
+        write decl
+
+...
