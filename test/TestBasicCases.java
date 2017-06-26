@@ -1,5 +1,5 @@
 import java.util.*;
-public class Test {
+public class TestBasicCases {
 protected int f, g;
 
 public int[] a = {1,2,3}, // line comment with ;
