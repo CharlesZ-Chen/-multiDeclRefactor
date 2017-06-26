@@ -1,0 +1,2 @@
+This directory records some code cases that `multiDeclRefactor` currently cannot handle correctly.
+Once the issue represented by the code case in this directory solved, that code case should be moved to `test` directory as a regression test case.
